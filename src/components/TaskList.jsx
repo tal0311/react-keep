@@ -1,7 +1,7 @@
 // COMPONENTS
 import { TaskPreview } from './TaskPreview'
 
-export const TaskList = ({ notes, remove, duplicate }) => {
+export const TaskList = ({ notes, remove, duplicate, pin, toggleCheckBox, noteDetails }) => {
   if (!notes) return <h2>Loading...</h2>
   return (
     <>
@@ -12,6 +12,9 @@ export const TaskList = ({ notes, remove, duplicate }) => {
               note={note}
               duplicate={duplicate}
               remove={remove}
+              pin={pin}
+              toggleCheckBox={toggleCheckBox}
+              noteDetails={noteDetails}
               key={note._id || idx}
             />
           ))}

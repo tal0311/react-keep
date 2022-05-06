@@ -12,12 +12,32 @@
   // column-gap: 3;
   // column-width: 300px;
 
-  
   .task-preview {
     overflow-y: hidden;
-    margin: 2%;
+    margin: 0.5rem;
     @include txt;
-
+    max-width: 300px;
+    .content {
+      flex: 1;
+    }
+    &.flex {
+      flex-direction: column;
+    }
+    .list {
+      input {
+        margin-top: 1rem;
+        height: 20px;
+        width: 20px;
+        margin-inline-end: 1rem;
+      }
+      label {
+        font-size: 1.5em;
+      }
+    }
+    img {
+      height: 100%;
+      width: 100%;
+    }
     border: 1px solid #3333;
     min-height: fit-content;
 

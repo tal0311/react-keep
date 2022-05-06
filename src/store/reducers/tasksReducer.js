@@ -5,7 +5,7 @@ const INITIAL_STATE = {
   colors: [
     '#f68282',
     '#46f4ec',
-    '#5281e893',
+    '#5281e8',
     '#ec60f9',
     '#f99360',
     '#f4f960',
@@ -15,7 +15,7 @@ const INITIAL_STATE = {
 }
 
 export function tasksReducer(state = INITIAL_STATE, action) {
-  console.log(action)
+  
   switch (action.type) {
     case 'LOAD_NOTES':
       return {
@@ -32,7 +32,7 @@ export function tasksReducer(state = INITIAL_STATE, action) {
     case 'REMOVE_NOTE':
       return {
         ...state,
-        notes: state.contacts.filter((note) => note._id !== action.noteId),
+        notes: state.notes.filter((note) => note._id !== action.noteId),
       }
 
     case 'UPDATE_NOTE':

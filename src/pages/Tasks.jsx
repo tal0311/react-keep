@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Route } from 'react-router-dom'
 
 // REDUX
 import { useDispatch, useSelector } from 'react-redux'
@@ -7,10 +8,13 @@ import {
   addNewNote,
   removeNote,
   duplicateNote,
+  updateNote,
+  getNoteDetails,
 } from '../store/actions/tasksActions'
 // COMPONENTS
 import { TaskList } from '../components/TaskList'
 import { AddTask } from '../components/AddTask'
+import { NoteDetails } from '../components/NoteDetails'
 
 export const Tasks = () => {
   const dispatch = useDispatch()
@@ -18,16 +22,16 @@ export const Tasks = () => {
   const [pinned, setPinned] = useState(null)
   const [unPinned, setUnpinned] = useState(null)
   const [value, setValue] = useState({ type: 'txt', content: '' })
-  const { notes } = useSelector((state) => state.tasksModule)
+  const { notes, currNote } = useSelector((state) => state.tasksModule)
 
   useEffect(() => {
     dispatch(loadNotes())
   }, [])
 
+  // filter notes
   useEffect(() => {
     if (notes) {
       const pinned = notes.filter((note) => note.isPinned)
-      console.log('notes updated');
       setPinned([...pinned])
     }
   }, [notes])
@@ -39,10 +43,11 @@ export const Tasks = () => {
     }
   }, [notes])
 
-  useEffect(() => {}, [value])
+  // CRUD LOGIC
   const onChangeType = ({ target }) => {
     const type = target.name
-    setValue({ ...value, type })
+    console.log(type)
+    setValue((prevState) => ({ ...prevState.value, type: type }))
   }
 
   const handleChange = ({ target }) => {
@@ -53,7 +58,6 @@ export const Tasks = () => {
     if (value.type && value.content) {
       try {
         dispatch(addNewNote(value))
-        dispatch(loadNotes())
       } catch (error) {
         console.log(error)
       }
@@ -63,7 +67,6 @@ export const Tasks = () => {
   const remove = (noteId) => {
     try {
       dispatch(removeNote(noteId))
-      dispatch(loadNotes())
     } catch (error) {
       console.log(error)
     }
@@ -74,6 +77,17 @@ export const Tasks = () => {
     } catch (error) {
       console.log(error)
     }
+  }
+  const pin = (noteId) => {
+    console.log(noteId)
+    dispatch(updateNote('pin', noteId))
+  }
+  const toggleCheckBox = (ev, idx) => {
+    ev.stopPropagation()
+    console.log(idx)
+  }
+  const noteDetails= (noteId)=>{
+      dispatch(getNoteDetails(noteId))
   }
 
   if (!notes) return <h1>Loading...</h1>
@@ -87,14 +101,34 @@ export const Tasks = () => {
       />
       <section className='pinned-tasks'>
         {pinned && (
-          <TaskList notes={pinned} remove={remove} duplicate={duplicate} />
+          <TaskList
+            notes={pinned}
+            remove={remove}
+            duplicate={duplicate}
+            pin={pin}
+            toggleCheckBox={toggleCheckBox}
+            noteDetails={noteDetails}
+          />
         )}
       </section>
       <section className='all-tasks'>
         {unPinned && (
-          <TaskList notes={unPinned} remove={remove} duplicate={duplicate} />
+          <TaskList
+            notes={unPinned}
+            remove={remove}
+            duplicate={duplicate}
+            pin={pin}
+            toggleCheckBox={toggleCheckBox}
+            noteDetails={noteDetails}
+          />
         )}
       </section>
+
+      {currNote && (
+        <section>
+          <Route path='/note/:_id' component={NoteDetails} />
+        </section>
+      )}
     </>
   )
 }

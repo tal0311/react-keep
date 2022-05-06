@@ -19,7 +19,7 @@ function App() {
           <Switch>
             {/* <Route path='/abut' component={component name} /> */}
             {/* <Route path='/task/edit/:id?' component={component name} /> */}
-            <Route path='/note/:_id' component={NoteDetails} />
+            {/* <Route path='/note/:_id' component={NoteDetails} /> */}
             <Route path='/' component={Tasks} />
           </Switch>
         </section>

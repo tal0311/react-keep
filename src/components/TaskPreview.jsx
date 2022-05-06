@@ -3,7 +3,14 @@ import { useState } from 'react'
 import { ColorList } from './ColorList'
 import { Link } from 'react-router-dom/cjs/react-router-dom.min'
 
-export const TaskPreview = ({ note, remove, duplicate }) => {
+export const TaskPreview = ({
+  note,
+  remove,
+  duplicate,
+  pin,
+  toggleCheckBox,
+  noteDetails,
+}) => {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const { _id, type, title, craetedAt, content, isPinned, color } = note
 
@@ -18,16 +25,32 @@ export const TaskPreview = ({ note, remove, duplicate }) => {
     <>
       <section
         style={{ backgroundColor: color, backgroundImage: { content } }}
-        className='task-preview'
+        className='task-preview flex'
       >
-        <Link to={'/note/' + _id}>
+        <Link onClick={() => noteDetails(_id)} to={'/note/' + _id}>
           <h4>{title}</h4>
-          <p>{content}</p>
-          <p>{time}</p>
         </Link>
+        {type === 'list' &&
+          content.split(',').map((item, idx) => {
+            return (
+              <section className='content list flex' key={idx}>
+                <label onClick={(ev) => toggleCheckBox(ev, idx)} htmlFor='task'>
+                  <input type='checkbox' name='task' id='task' />
+                  {item}
+                </label>
+              </section>
+            )
+          })}
+        {type === 'txt' && <p className='content'>{content}</p>}
+        {type === 'img' && (
+          <img className='content' src={content} alt={title} />
+        )}
+
+        <p>{time}</p>
         <div className='actions-container'>
           <button
             className={isPinned ? 'fa-solid fa-xmark' : 'fa-solid fa-bookmark'}
+            onClick={() => pin(_id)}
           ></button>
           <button onClick={() => remove(_id)}>
             <i className='fa-solid fa-trash-can'></i>

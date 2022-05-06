@@ -36,6 +36,8 @@ export function removeNote(noteId) {
     }
   }
 }
+
+// TODO: refactor to switch case
 export function updateNote(value, noteId) {
   return async (dispatch) => {
     try {
@@ -47,6 +49,13 @@ export function updateNote(value, noteId) {
           const updated = await taskService.save(note)
           dispatch({ type: 'UPDATE_NOTE', updated })
         }
+      }
+      if (value === 'pin') {
+        console.log('pin note')
+        const note = await taskService.getById(noteId)
+        note.isPinned = !note.isPinned
+        const updated = await taskService.save(note)
+        dispatch({ type: 'UPDATE_NOTE', updated })
       }
     } catch (err) {
       console.log('err:', err)

@@ -1,0 +1,37 @@
+.note-details {
+  position: fixed;
+  top: 40vh;
+  left: 50vw;
+  transform: translateX(-50%);
+  height: 50vh;
+  width: 50vw;
+  border-radius: $rad;
+  padding: 2rem;
+  @include shadow;
+
+  &.flex {
+    flex-direction: column;
+  }
+
+  .content {
+    flex: 1;
+  }
+
+  .actions-container {
+    button {
+      &:not(:first-child) {
+        margin-inline-start: 0.5rem;
+        font-size: x-large;
+      }
+      background: none;
+      border: none;
+      color: #5558;
+      &:hover {
+        color: #333;
+      }
+    }
+  }
+}
+#app {
+  opacity: 0.2;
+}
