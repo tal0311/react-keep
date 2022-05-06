@@ -1,0 +1,21 @@
+.user-container {
+  background-color: $clr7;
+
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+
+  color: $clr5;
+  &.flex {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .movement-container{
+    margin: 2rem;
+    h2{
+    text-align: center;
+    }
+  }
+}

@@ -1,0 +1,48 @@
+.pinned-tasks,
+.unpinned-tasks {
+  background-color: #b4b4b4;
+  height: fit-content;
+  height: 500px;
+}
+.task-list {
+  // height: inherit;
+
+  // column-count: 4;
+  // column-fill: auto;
+  // column-gap: 3;
+  // column-width: 300px;
+
+  
+  .task-preview {
+    overflow-y: hidden;
+    margin: 2%;
+    @include txt;
+
+    border: 1px solid #3333;
+    min-height: fit-content;
+
+    &:hover {
+      .actions-container {
+        transition: 0.2s ease-in-out;
+        opacity: 1;
+        transform: translateY(0);
+
+        button {
+          &:not(:first-child) {
+            margin-inline-start: 0.5rem;
+          }
+          background: none;
+          border: none;
+          color: #5558;
+          &:hover {
+            color: #333;
+          }
+        }
+      }
+    }
+    .actions-container {
+      opacity: 0;
+      transform: translateY(100%);
+    }
+  }
+}

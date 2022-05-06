@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+// ROUTER
+import { HashRouter as Router, Route, Switch } from 'react-router-dom'
+
+// ALL COMPONENTS GOES HERE
+import { AppNav } from './components/AppNav'
+import { NoteDetails } from './components/NoteDetails'
+import { Tasks } from './pages/Tasks'
+
 
 function App() {
+ 
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Router>
+      <div className='App'>
+        <section>
+          <AppNav />
+          <Switch>
+            {/* <Route path='/abut' component={component name} /> */}
+            {/* <Route path='/task/edit/:id?' component={component name} /> */}
+            <Route path='/note/:_id' component={NoteDetails} />
+            <Route path='/' component={Tasks} />
+          </Switch>
+        </section>
+      </div>
+    </Router>
+  )
 }
 
-export default App;
+export default App

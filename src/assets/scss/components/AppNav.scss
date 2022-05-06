@@ -1,0 +1,15 @@
+.app-nav {
+  background-color: $clr1;
+  padding: 1rem;
+
+  nav {
+    button {
+      @include button;
+    }
+  }
+
+  .active{
+   border-bottom: 1px solid #fff;
+   padding-bottom: 0.5rem;
+  }
+}

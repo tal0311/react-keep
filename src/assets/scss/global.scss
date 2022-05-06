@@ -1,0 +1,27 @@
+// Externals
+
+// Setup
+@import 'setup/variables';
+@import 'setup/functions';
+@import 'setup/mixins';
+
+// Basics
+@import 'basics/typography';
+@import 'basics/base';
+@import 'basics/helpers';
+@import 'basics/layout';
+@import 'basics/modals';
+@import 'basics/animations';
+
+
+// Pages
+@import 'components/HomePage.scss';
+ 
+
+// Components
+@import 'components/AppNav.scss';
+@import 'components/TaskList.scss';
+@import 'components/AddTask.scss';
+@import 'components/ColorList.scss';
+
+

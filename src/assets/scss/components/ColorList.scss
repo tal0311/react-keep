@@ -1,0 +1,25 @@
+.color-list {
+  @include shadow;
+  border-radius: $rad;
+  position: absolute;
+  padding: 0.5em;
+  margin-top: 0.5em;
+
+  background-color: rgb(248, 243, 243);
+
+  &.flex {
+    justify-content: center;
+    align-items: center;
+  }
+  .color-preview {
+    margin-inline-start: 0.5em;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    border: 1px solid #3333;
+
+    &:hover {
+      @include hover;
+    }
+  }
+}

@@ -1,0 +1,42 @@
+.add-task {
+  width: 100vw;
+  justify-content: center;
+  margin: auto;
+  .add-task-container {
+    border-radius: $rad;
+    width: 50%;
+    margin: 1rem;
+    padding: 1rem;
+    box-shadow: 1px 0px 10px 1px #a7a7a7;
+
+    > * {
+      margin-inline-end: 0.5rem;
+    }
+    .text-input {
+      border: none;
+      flex-grow: 1;
+      padding: 0.2rem 1rem;
+      width: 50%;
+      &:focus {
+        outline: none;
+        border-bottom: 1px solid #3333;
+      }
+    }
+    &.flex {
+      justify-content: center;
+      align-items: center;
+    }
+
+    button {
+      &:not(:first-child) {
+        margin-inline-start: 0.5rem;
+      }
+      background: none;
+      border: none;
+      color: #5558;
+      &:hover {
+        color: #333;
+      }
+    }
+  }
+}
