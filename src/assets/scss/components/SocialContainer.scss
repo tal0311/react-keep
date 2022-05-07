@@ -1,0 +1,39 @@
+.social-container {
+  // background-color: red;
+  width: 80%;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 2rem;
+
+  font-size: 45px;
+
+  a {
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .fa-facebook-square {
+    &:hover {
+      color: #1877f2;
+    }
+  }
+  .fa-linkedin {
+    &:hover {
+      color: #0077b5;
+    }
+  }
+  .fa-envelope {
+    &:hover {
+      color: #ea4335;
+    }
+  }
+  .fa-twitter-square {
+    &:hover {
+      color: #1da1f2;
+    }
+  }
+  .fa-whatsapp-square {
+    &:hover {
+      color: #25d366;
+    }
+  }
+}

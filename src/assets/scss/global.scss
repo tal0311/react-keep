@@ -13,10 +13,9 @@
 @import 'basics/modals';
 @import 'basics/animations';
 
-
 // Pages
-@import 'components/HomePage.scss';
- 
+
+@import 'components/About.scss';
 
 // Components
 @import 'components/AppNav.scss';
@@ -24,5 +23,4 @@
 @import 'components/AddTask.scss';
 @import 'components/ColorList.scss';
 @import 'components/NoteDetails.scss';
-
-
+@import 'components/SocialContainer.scss';
