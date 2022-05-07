@@ -1,13 +1,21 @@
 import React, { useEffect, useState } from 'react'
 // REDUX
 import { useDispatch, useSelector } from 'react-redux'
-import { getNoteDetails } from '../store/actions/tasksActions'
-// SERVICE
-import { taskService } from '../service/tasks.service'
+
+import {
+  removeNote,
+  duplicateNote,
+  updateNote,
+  getNoteDetails,
+  editNoteDetails,
+} from '../store/actions/tasksActions'
+
 // COMPONENTS
 import { ColorList } from './ColorList'
 
 export const NoteDetails = (props) => {
+  const [isEditable, setIsEditable] = useState(false)
+  const [note, setNote] = useState({ title: '', content: '' })
   const dispatch = useDispatch()
   const currNote = useSelector((state) => state.tasksModule.currNote)
 
@@ -15,15 +23,47 @@ export const NoteDetails = (props) => {
   const { title, type, content, color, craetedAt, isPinned } = currNote
   const { _id } = props.match.params
 
+  const remove = (noteId) => {
+    try {
+      dispatch(removeNote(noteId))
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
-  const remove = () => {}
-  const pin = () => {}
-  const duplicate = () => {}
+  useEffect(() => {
+    console.log(note)
+    if (!note.title && !note.content) return
+    dispatch(editNoteDetails(note))
+  }, [note])
+  const pin = (noteId) => {
+    console.log(noteId)
+    dispatch(updateNote('pin', noteId))
+  }
+  const duplicate = (noteId) => {
+    try {
+      dispatch(duplicateNote(noteId))
+    } catch (error) {
+      console.log(error)
+    }
+  }
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen)
   }
   const back = () => {
     dispatch(getNoteDetails(null))
+  }
+  const editNote = (ev) => {
+    if (ev.target.nodeName === 'H2') {
+      const title = ev.target.innerText
+
+      setNote((note) => ({ ...note, title }))
+    }
+    if (ev.target.nodeName === 'P') {
+      const content = ev.target.innerText
+      setNote((note) => ({ ...note, content }))
+      dispatch(editNoteDetails(note))
+    }
   }
   const toggleCheckBox = () => {}
 
@@ -32,12 +72,21 @@ export const NoteDetails = (props) => {
   return (
     <>
       {currNote && (
-        <section className='note-details flex' style={{ backgroundColor: color }}>
-          <h2>{currNote.title}</h2>
+        <section
+          className='note-details flex'
+          style={{ backgroundColor: color }}
+        >
+          <h2 contentEditable={isEditable} onBlur={(ev) => editNote(ev)}>
+            {currNote.title}
+          </h2>
           {type === 'list' &&
             content.split(',').map((item, idx) => {
               return (
-                <section className='content list flex' key={idx}>
+                <section
+                  suppressContentEditableWarning={true}
+                  className='content list flex'
+                  key={idx}
+                >
                   <label
                     onClick={(ev) => toggleCheckBox(ev, idx)}
                     htmlFor='task'
@@ -48,8 +97,18 @@ export const NoteDetails = (props) => {
                 </section>
               )
             })}
-          {type === 'txt' && <p className='content' >{content}</p>}
-          {type === 'img' && <img className='content' src={content} alt={title} />}
+          {type === 'txt' && (
+            <p
+              className='content'
+              contentEditable={isEditable}
+              onBlur={(ev) => editNote(ev)}
+            >
+              {content}
+            </p>
+          )}
+          {type === 'img' && (
+            <img className='content' src={content} alt={title} />
+          )}
 
           <div className='actions-container'>
             <button
@@ -66,6 +125,9 @@ export const NoteDetails = (props) => {
             </button>
             <button onClick={() => duplicate(_id)}>
               <i className='fa-solid fa-clone'></i>
+            </button>
+            <button onClick={() => setIsEditable(!isEditable)}>
+              <i className='fa-solid fa-pen-to-square'></i>
             </button>
             <button onClick={back}>close</button>
           </div>

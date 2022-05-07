@@ -26,7 +26,7 @@ export const Tasks = () => {
 
   useEffect(() => {
     dispatch(loadNotes())
-  }, [])
+  }, [currNote])
 
   // filter notes
   useEffect(() => {

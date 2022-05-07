@@ -62,6 +62,22 @@ export function updateNote(value, noteId) {
     }
   }
 }
+
+export function editNoteDetails(edited, noteId) {
+  return async (dispatch, getState) => {
+    try {
+      const { currNote } = getState().tasksModule
+      console.log(edited, currNote._id)
+      const note = await taskService.getById(currNote._id)
+      note.title = edited.title ? edited.title : note.title
+      note.content = edited.content ? edited.content : note.content
+      taskService.save(note)
+      dispatch({ type: 'EDIT_NOTE', note })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
 export function getNoteDetails(noteId) {
   return async (dispatch) => {
     try {

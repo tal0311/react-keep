@@ -15,7 +15,6 @@ const INITIAL_STATE = {
 }
 
 export function tasksReducer(state = INITIAL_STATE, action) {
-  
   switch (action.type) {
     case 'LOAD_NOTES':
       return {
@@ -41,6 +40,12 @@ export function tasksReducer(state = INITIAL_STATE, action) {
         notes: state.notes.map((note) =>
           note._id === action.updated._id ? action.updated : note
         ),
+      }
+
+    case 'EDIT_NOTE':
+      return {
+        ...state,
+        currNote: { ...action.note },
       }
     case 'SET_FILTER_BY':
       return {
