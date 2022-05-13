@@ -86,8 +86,8 @@ export const Tasks = () => {
     ev.stopPropagation()
     console.log(idx)
   }
-  const noteDetails= (noteId)=>{
-      dispatch(getNoteDetails(noteId))
+  const noteDetails = (noteId) => {
+    dispatch(getNoteDetails(noteId))
   }
 
   if (!notes) return <h1>Loading...</h1>
@@ -123,7 +123,6 @@ export const Tasks = () => {
           />
         )}
       </section>
-
       {currNote && (
         <section>
           <Route path='/note/:_id' component={NoteDetails} />
