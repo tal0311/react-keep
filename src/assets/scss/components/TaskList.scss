@@ -1,21 +1,22 @@
 .pinned-tasks,
 .unpinned-tasks {
   height: fit-content;
-  height: 500px;
+  // display: flex;
 }
 .task-list {
-  // height: inherit;
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
 
-  // column-count: 4;
-  // column-fill: auto;
-  // column-gap: 3;
-  // column-width: 300px;
+  width: 100%;
 
   .task-preview {
-    overflow-y: hidden;
+    position: relative;
+
     margin: 0.5rem;
     @include txt;
-    max-width: 300px;
+    min-height: 200px;
+    max-width: 350px;
+    min-height: fit-content;
     .content {
       flex: 1;
     }

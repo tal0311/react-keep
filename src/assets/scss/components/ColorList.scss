@@ -2,9 +2,10 @@
   @include shadow;
   border-radius: $rad;
   position: absolute;
+  bottom: -50px;
   padding: 0.5em;
   margin-top: 0.5em;
-
+  z-index: 1000;
   background-color: rgb(248, 243, 243);
 
   &.flex {
