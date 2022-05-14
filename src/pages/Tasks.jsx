@@ -10,11 +10,13 @@ import {
   duplicateNote,
   updateNote,
   getNoteDetails,
+  setUserMsg,
 } from '../store/actions/tasksActions'
 // COMPONENTS
 import { TaskList } from '../components/TaskList'
 import { AddTask } from '../components/AddTask'
 import { NoteDetails } from '../components/NoteDetails'
+import { UserMsg } from '../components/UserMsg'
 
 export const Tasks = () => {
   const dispatch = useDispatch()
@@ -128,6 +130,7 @@ export const Tasks = () => {
           <Route path='/note/:_id' component={NoteDetails} />
         </section>
       )}
+      <UserMsg />
     </>
   )
 }

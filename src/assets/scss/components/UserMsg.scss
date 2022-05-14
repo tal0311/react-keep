@@ -1,0 +1,17 @@
+.user-msg {
+  position: fixed;
+  bottom: 0.8rem;
+  background-color: rgba(184, 166, 166, 0.754);
+  border-radius: $rad;
+  padding: 1rem;
+  left: 1rem;
+  &.success {
+    background-color: rgba(0, 255, 0, 0.704);
+    color: #ffff;
+  }
+
+  &.danger {
+    background-color: rgba(254, 0, 0, 0.761);
+    color: #fff;
+  }
+}

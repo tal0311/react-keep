@@ -66,3 +66,16 @@
     }
   }
 }
+
+@media (max-width: 700px) {
+  .task-list {
+    grid-template-columns: 1fr;
+    
+    width: 100%;
+    justify-content: center;
+    .task-preview {
+      justify-self: center;
+      min-width: 90vw;
+    }
+  }
+}

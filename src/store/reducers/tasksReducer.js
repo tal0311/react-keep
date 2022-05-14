@@ -12,6 +12,10 @@ const INITIAL_STATE = {
     '#8eda68',
     '#ffff',
   ],
+  userMsg: {
+    msg: '',
+    type: '',
+  },
 }
 
 export function tasksReducer(state = INITIAL_STATE, action) {
@@ -41,7 +45,6 @@ export function tasksReducer(state = INITIAL_STATE, action) {
           note._id === action.updated._id ? action.updated : note
         ),
       }
-
     case 'EDIT_NOTE':
       return {
         ...state,
@@ -56,6 +59,11 @@ export function tasksReducer(state = INITIAL_STATE, action) {
       return {
         ...state,
         currNote: action.note,
+      }
+    case 'SET_USER_MSG':
+      return {
+        ...state,
+        userMsg: {...action.userMsg }
       }
     default:
       return state
