@@ -1,5 +1,6 @@
 import { asyncService } from './async.service'
-import axios from 'axios'
+import { utilService } from './util.service'
+// import axios from 'axios'
 console.log('task service')
 
 const KEY = 'tasks'
@@ -16,30 +17,7 @@ export const taskService = {
   getEmptyTask,
   duplicate,
 }
-
-var gTasks = [
-  {
-    _id: 't101',
-    createdAt: 1650624148214,
-    type: 'txt',
-    content:
-      ' Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequuntur porro molestias eaque magnam omnis facilis officiis suscipit, deserunt voluptatum sapiente? Quas animi deserunt quam quasi, asperiores sequi voluptatem suscipit dolor.',
-  },
-  {
-    _id: 't102',
-    createdAt: 1650624148214,
-    type: 'txt',
-    content:
-      ' Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequuntur porro molestias eaque magnam omnis facilis officiis suscipit, deserunt voluptatum sapiente? Quas animi deserunt quam quasi, asperiores sequi voluptatem suscipit dolor.',
-  },
-  {
-    _id: 't103',
-    createdAt: 1650624148214,
-    type: 'txt',
-    content:
-      ' Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequuntur porro molestias eaque magnam omnis facilis officiis suscipit, deserunt voluptatum sapiente? Quas animi deserunt quam quasi, asperiores sequi voluptatem suscipit dolor.',
-  },
-]
+createTasks()
 
 async function query() {
   try {
@@ -112,8 +90,48 @@ function getEmptyTask(type, content, title = 'New task') {
     type,
     content,
     title,
-    color: '#e8525293',
+    color: '#fff',
     createdAt: Date.now(),
     isPinned: false,
   }
 }
+
+async function createTasks() {
+  try {
+    const tasks = await query()
+    console.log(tasks)
+    if (!tasks || !tasks.length) {
+      console.log('crating tasks')
+      const tasks = []
+      tasks.push(createTask('txt', 'new task', 'lorem lorem lorem'))
+      tasks.push(createTask('txt', 'new task', 'lorem lorem lorem'))
+      tasks.push(createTask('txt', 'new task', 'lorem lorem lorem'))
+      tasks.push(createTask('txt', 'new task', 'lorem lorem lorem'))
+      tasks.push(createTask('txt', 'new task', 'lorem lorem lorem'))
+      tasks.push(createTask('txt', 'new task', 'lorem lorem lorem'))
+      tasks.push(createTask('txt', 'new task', 'lorem lorem lorem'))
+      tasks.push(createTask('txt', 'new task', 'lorem lorem lorem'))
+      _save(KEY, tasks)
+    }
+    return tasks
+  } catch (error) {
+    console.log('failed to create tasks', error)
+  }
+}
+
+function createTask(type, title, content) {
+  return {
+    _id: utilService.makeId(),
+    createdAt: Date.now(),
+    type,
+    content,
+    title,
+    color: '#fff',
+    isPinned: false,
+  }
+}
+
+function _save(entityType, entities) {
+  localStorage.setItem(entityType, JSON.stringify(entities))
+}
+

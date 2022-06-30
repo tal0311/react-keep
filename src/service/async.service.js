@@ -13,6 +13,8 @@ window.service = asyncService
 function query(entityType, delay = 500) {
   console.log('query')
   var entities = JSON.parse(localStorage.getItem(entityType)) || []
+
+  console.log(entityType, entities)
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve(entities)
