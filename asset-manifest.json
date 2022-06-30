@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/react-keep/static/css/main.b190bd58.css",
+    "main.js": "/react-keep/static/js/main.c7bfb011.js",
+    "static/js/787.cda612ba.chunk.js": "/react-keep/static/js/787.cda612ba.chunk.js",
+    "static/media/tal-profile.jpg": "/react-keep/static/media/tal-profile.170a4fc58923103dd809.jpg",
+    "index.html": "/react-keep/index.html",
+    "main.b190bd58.css.map": "/react-keep/static/css/main.b190bd58.css.map",
+    "main.c7bfb011.js.map": "/react-keep/static/js/main.c7bfb011.js.map",
+    "787.cda612ba.chunk.js.map": "/react-keep/static/js/787.cda612ba.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b190bd58.css",
+    "static/js/main.c7bfb011.js"
+  ]
+}
