@@ -103,12 +103,24 @@ async function createTasks() {
     if (!tasks || !tasks.length) {
       console.log('crating tasks')
       const tasks = []
+      tasks.push(
+        createTask(
+          'img',
+          'my waterfall',
+          'https://images.unsplash.com/photo-1656376406178-9b74c689bdad?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80'
+        )
+      )
       tasks.push(createTask('txt', 'new task', 'lorem lorem lorem'))
       tasks.push(createTask('txt', 'new task', 'lorem lorem lorem'))
       tasks.push(createTask('txt', 'new task', 'lorem lorem lorem'))
-      tasks.push(createTask('txt', 'new task', 'lorem lorem lorem'))
-      tasks.push(createTask('txt', 'new task', 'lorem lorem lorem'))
-      tasks.push(createTask('txt', 'new task', 'lorem lorem lorem'))
+      tasks.push(createTask('list', 'new task', 'lorem, lorem, lorem'))
+      tasks.push(
+        createTask(
+          'img',
+          'Photo of the day',
+          'https://images.unsplash.com/photo-1656473031961-9d5d9ee19f40?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80'
+        )
+      )
       tasks.push(createTask('txt', 'new task', 'lorem lorem lorem'))
       tasks.push(createTask('txt', 'new task', 'lorem lorem lorem'))
       _save(KEY, tasks)
@@ -134,4 +146,3 @@ function createTask(type, title, content) {
 function _save(entityType, entities) {
   localStorage.setItem(entityType, JSON.stringify(entities))
 }
-
